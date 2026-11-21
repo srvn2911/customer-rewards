@@ -1,0 +1,25 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    environment:
+      DATABASE_URL: sqlite:////app/instance/loyalty.db
+      FRONTEND_ORIGIN: http://localhost:5173
+      HOST: 0.0.0.0
+    ports:
+      - "5000:5000"
+    volumes:
+      - loyalty_data:/app/instance
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: http://localhost:5000/api
+    depends_on:
+      - backend
+    ports:
+      - "5173:5173"
+
+volumes:
+  loyalty_data:

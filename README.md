@@ -62,6 +62,23 @@ npm run dev
 ```
 Frontend runs at http://localhost:5173
 
+## Run with Docker Desktop
+
+1. Install and start Docker Desktop.
+2. From the project root, open PowerShell and run:
+   ```powershell
+   docker compose up --build
+   ```
+3. Open http://localhost:5173. The backend API is at http://localhost:5000.
+4. To stop the containers, press `Ctrl+C` in PowerShell, then run:
+   ```powershell
+   docker compose down
+   ```
+
+The SQLite database is stored in a Docker volume named `loyalty_data`, so it
+persists when you stop or recreate the containers. To delete the database too,
+run `docker compose down --volumes`. This Compose setup is for local development.
+
 ## Default reward rules
 - Earn: 1 point for every ₹100 spent
 - Redeem: 100 points = ₹10 discount
